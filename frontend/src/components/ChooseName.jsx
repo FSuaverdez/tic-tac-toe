@@ -49,7 +49,10 @@ const ChooseName = () => {
         >
           Back
         </button>
-        <button className="px-2 py-1 bg-cyan-800 rounded hover:bg-cyan-700 font-bold text-white text-xl">
+        <button
+          className="px-2 py-1 bg-cyan-800 rounded hover:bg-cyan-700 font-bold text-white text-xl"
+          onClick={() => setChooseName(false)}
+        >
           Continue
         </button>
       </div>
