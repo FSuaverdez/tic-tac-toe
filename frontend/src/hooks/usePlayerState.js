@@ -3,11 +3,14 @@ import { devtools } from "zustand/middleware";
 
 const usePlayerState = create(
   devtools(
-    (set) => ({
+    (set, get) => ({
       player1Name: "",
       player2Name: "",
       player1Wins: 0,
+      player1Losses: 0,
       player2Wins: 0,
+      player2Losses: 0,
+      draw: 0,
       player1Side: "X",
       player2Side: "O",
       isChoosePlayerName: false,
@@ -20,7 +23,7 @@ const usePlayerState = create(
           set({ player2Name: name });
         }
       },
-      swapPlaySide: (_, get) => {
+      swapPlaySide: () => {
         if (get().player1Side === "X") {
           set({ player1Side: "O", player2Side: "X" });
         } else {
@@ -43,7 +46,28 @@ const usePlayerState = create(
           }));
         }
       },
+      onLose: (playerNumber) => {
+        if (playerNumber === 1) {
+          set((state) => ({
+            player1Losses: state.player1Losses + 1,
+          }));
+        }
+        if (playerNumber === 2) {
+          set((state) => ({
+            player2Losses: state.player2Losses + 1,
+          }));
+        }
+      },
+      onDraw: () => {
+        set((state) => ({
+          draw: state.draw + 1,
+        }));
+      },
+      resetDraw: () => {
+        set({ draw: 0 });
+      },
       onClearWins: () => set({ player1Wins: 0, player2Wins: 0 }),
+      onClearLosses: () => set({ player1Losses: 0, player2Losses: 0 }),
     }),
     { name: "playerState" }
   )

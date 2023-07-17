@@ -8,6 +8,15 @@ const useGameState = create(
       isContinuePending: false,
       playCount: 0,
       roundNo: 1,
+      playerTurn: 1,
+      firstTurn: 1,
+      setPlayerTurn: (player) => set({ playerTurn: player }),
+      swapFirstTurn: () => {
+        set((state) => ({
+          firstTurn: state.firstTurn === 1 ? 2 : 1,
+          playerTurn: state.firstTurn === 1 ? 2 : 1,
+        }));
+      },
       incrementRound: () => {
         set((state) => ({ roundNo: state.roundNo + 1 }));
       },
