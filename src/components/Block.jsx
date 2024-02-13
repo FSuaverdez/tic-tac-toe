@@ -9,7 +9,11 @@ const Block = (props) => {
 
   return (
     <div
-      className="p-3 w-32 h-32 border-white rounded-3xl border-4 flex justify-center items-center"
+      className={`p-3 w-32 h-32 border-gray-500 rounded-3xl border-4 flex justify-center items-center ${
+        !boardState[index]
+          ? "cursor-pointer hover:border-gray-100"
+          : "cursor-not-allowed"
+      }`}
       onClick={() => handleClick(index)}
     >
       <div
