@@ -7,11 +7,11 @@ const ChooseName = () => {
 
   const { onStop } = useGameState();
   return (
-    <div className="flex justify-center items-center mt-10 flex-col gap-8">
+    <div className="flex justify-center items-center mt-10 flex-col gap-20">
       <div className="flex flex-col justify-center items-center gap-2">
         <label
           htmlFor="player1"
-          className=" font-primary text-xl font-bold text-blue-500"
+          className=" font-primary text-3xl font-bold text-blue-500"
         >
           Player 1 Name
         </label>
@@ -21,12 +21,13 @@ const ChooseName = () => {
           value={player1Name}
           name="player1"
           onChange={(e) => setPlayerName(e.target.value, 1)}
+          required
         />
       </div>
       <div className="flex flex-col justify-center items-center gap-2">
         <label
           htmlFor="player1"
-          className=" font-primary text-xl font-bold text-red-500"
+          className=" font-primary text-3xl font-bold text-red-500"
         >
           Player 2 Name
         </label>
@@ -36,6 +37,7 @@ const ChooseName = () => {
           value={player2Name}
           name="player2"
           onChange={(e) => setPlayerName(e.target.value, 2)}
+          required
         />
       </div>
       <div className="flex justify-around items-center gap-5">
@@ -50,8 +52,17 @@ const ChooseName = () => {
           Back
         </button>
         <button
-          className="px-2 py-1 bg-cyan-800 rounded hover:bg-cyan-700 font-bold text-white text-xl"
-          onClick={() => setChooseName(false)}
+          className="px-2 py-1 bg-cyan-600 rounded hover:bg-cyan-400 font-bold text-white text-xl"
+          onClick={() => {
+            if (player1Name === "" || player2Name === "") return;
+
+            if (player1Name === player2Name) {
+              alert("Player 1 and Player 2 name cannot be same");
+              return;
+            }
+
+            setChooseName(false);
+          }}
         >
           Continue
         </button>

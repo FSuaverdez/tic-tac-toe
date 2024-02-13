@@ -1,16 +1,26 @@
 import PropTypes from "prop-types";
 import useBoardState from "../hooks/useBoardState";
+import usePlayerState from "../hooks/usePlayerState";
 
 const Block = (props) => {
   const { index, handleClick } = props;
   const { boardState } = useBoardState();
+  const { player1Side, player2Side } = usePlayerState();
 
   return (
     <div
       className="p-3 w-32 h-32 border-white rounded-3xl border-4 flex justify-center items-center"
       onClick={() => handleClick(index)}
     >
-      <div className="text-white text-5xl font-bold font-primary">
+      <div
+        className={` text-5xl font-bold font-primary ${
+          player1Side === boardState[index]
+            ? "text-blue-500"
+            : player2Side === boardState[index]
+            ? "text-red-500"
+            : "text-white"
+        }`}
+      >
         {boardState[index]}
       </div>
     </div>
