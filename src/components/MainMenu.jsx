@@ -11,8 +11,6 @@ const MainMenu = () => {
     <div className="flex justify-center items-center mt-10">
       {!isPlaying && !isContinuePending && (
         <div>
-          {/* Create a good description that invited people to play the game */}
-
           <Board boardState={sampleBoardState} disabled={true} />
           <div className="flex items-center justify-center mt-16">
             <button
