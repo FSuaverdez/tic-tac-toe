@@ -6,6 +6,7 @@ const useGameState = create(
     (set) => ({
       isPlaying: false,
       isContinuePending: false,
+      showEndGameStats: false,
       playCount: 0,
       roundNo: 1,
       playerTurn: 1,
@@ -29,6 +30,21 @@ const useGameState = create(
       onRoundStart: () => set({ isContinuePending: false }),
       onStart: () => set({ isPlaying: true }),
       onStop: () => set({ isPlaying: false, isContinuePending: false }),
+      onEndGame: () =>
+        set({
+          showEndGameStats: true,
+          isPlaying: false,
+        }),
+      onResetGame: () =>
+        set({
+          isPlaying: false,
+          isContinuePending: false,
+          showEndGameStats: false,
+          playCount: 0,
+          roundNo: 1,
+          playerTurn: 1,
+          firstTurn: 1,
+        }),
     }),
     { name: "gameState" }
   )

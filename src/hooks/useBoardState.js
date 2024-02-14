@@ -71,6 +71,8 @@ const useBoardState = create(
         useGameState.getState().setPlayerTurn(nextPlayerTurn);
       },
       onClear: () => set({ boardState: ["", "", "", "", "", "", "", "", ""] }),
+      resetBoard: () =>
+        set({ boardState: ["", "", "", "", "", "", "", "", ""] }),
     }),
     { name: "boardSate" }
   )

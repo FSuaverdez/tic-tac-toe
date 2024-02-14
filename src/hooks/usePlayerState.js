@@ -68,6 +68,18 @@ const usePlayerState = create(
       },
       onClearWins: () => set({ player1Wins: 0, player2Wins: 0 }),
       onClearLosses: () => set({ player1Losses: 0, player2Losses: 0 }),
+      resetPlayerState: () =>
+        set({
+          player1Name: "",
+          player2Name: "",
+          player1Wins: 0,
+          player1Losses: 0,
+          player2Wins: 0,
+          player2Losses: 0,
+          draw: 0,
+          player1Side: "X",
+          player2Side: "O",
+        }),
     }),
     { name: "playerState" }
   )
